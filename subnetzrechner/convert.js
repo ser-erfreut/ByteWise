@@ -64,10 +64,9 @@ function calculate(){
         showError('error',`Fehler: ${results.error}`);
     } 
     else{
-        resultsDiv.textContent = JSON.stringify(results, null, 2);
+        resultsDiv.innerHTML = `<pre>${JSON.stringify(results, null, 2)}</pre>`;
     }
 }
-
 function speichern() {
     const ipCidr = document.getElementById('ipAddress').value;
     const results = calculateSubnet(ipCidr);
