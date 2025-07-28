@@ -18,7 +18,7 @@
             <div class="max-w-3xl mx-auto text-center">
                 <h1 class="text-4xl md:text-5xl font-bold mb-6">Willkommen bei ByteWise</h1>
                 <p class="text-xl mb-8">Erfahren sie mehr über IP-Adressen</p>
-                <button class="bg-white text-blue-600 px-8 py-3 rounded-full hover:bg-blue-50 transition duration-300 font-semibold">
+                <button id="services" class="bg-white text-blue-600 px-8 py-3 rounded-full hover:bg-blue-50 transition duration-300 font-semibold">
                     Mehr erfahren
                 </button>
             </div>
@@ -32,7 +32,8 @@
                 <!-- Feature 1 -->
                 <div class="bg-white p-6 rounded-lg shadow-lg">
                     <div class="text-blue-600 text-3xl mb-4">
-                        <i class="fas fa-chart-line"></i>
+                        <i class="fa-solid fa-calculator"></i>
+                        <i class="fa-solid fa-chart-diagram"></i>
                     </div>
                     <h3 class="text-xl font-semibold mb-3">IP-Adressenrechner</h3>
                     <p class="text-gray-600">Lasse dir eine Anzahl an IP-Adressen generieren.</p>
@@ -44,7 +45,7 @@
                 <!-- Feature 2 -->
                 <div class="bg-white p-6 rounded-lg shadow-lg">
                     <div class="text-blue-600 text-3xl mb-4">
-                        <i class="fas fa-users"></i>
+                        <i class="fa-solid fa-chart-line"></i>
                     </div>
                     <h3 class="text-xl font-semibold mb-3">Subnetzrechner</h3>
                     <p class="text-gray-600">Rechne deine Broadcast und Subnetzmaske aus</p>
@@ -56,11 +57,14 @@
                 <!-- Feature 3 -->
                 <div class="bg-white p-6 rounded-lg shadow-lg">
                     <div class="text-blue-600 text-3xl mb-4">
-                        <i class="fas fa-lock"></i>
+                        <i class="fa-solid fa-chart-bar"></i>
+                        <i class="fa-solid fa-chart-diagram"></i>
+
                     </div>
                     <h3 class="text-xl font-semibold mb-3">Verlauf</h3>
                     <p class="text-gray-600">Höchste Standards für Ihre Datensicherheit.</p>
-                    <button onclick="window.location.href='../verlauf/verlauf.html'" class="bg-blue-600 text-white px-6 py-3 rounded-full hover:bg-blue-700 transition duration-300 mt-[20px]">
+                    <!-- Wir später geändert -->
+                    <button id="about" onclick="window.location.href='../verlauf/verlauf.html'" class="bg-blue-600 text-white px-6 py-3 rounded-full hover:bg-blue-700 transition duration-300 mt-[20px]">
                         zum Verlauf
                     </button>
                 </div>
@@ -73,10 +77,10 @@
         <div class="container mx-auto px-4">
             <div class="flex flex-col md:flex-row items-center gap-12">
                 <div class="md:w-1/2">
-                    <img src="https://via.placeholder.com/600x400" alt="Über uns" class="rounded-lg shadow-lg">
+                    <img src="../pictures/wir2.png" alt="Über uns" class="rounded-lg shadow-lg h-[300px]">
                 </div>
                 <div class="md:w-1/2">
-                    <h2 class="text-3xl font-bold mb-6 text-gray-800">Über unser Unternehmen</h2>
+                    <h2 class="text-3xl font-bold mb-6 text-gray-800">Über uns</h2>
                     <p class="text-gray-600 mb-6">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
                     <button class="bg-blue-600 text-white px-6 py-3 rounded-full hover:bg-blue-700 transition duration-300">
                         Mehr über uns
