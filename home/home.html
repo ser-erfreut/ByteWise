@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FirmenName - Startseite</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="../main/header.js"></script>
+    <link rel="stylesheet" href="../header/header.css">
+</head>
+<body class="bg-gray-50" onload="mainLoad()">
+    <div id="header"></div>
+
+    <!-- Hero Section -->
+    <section class="bg-blue-600 text-white py-20 pt-[200px]">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto text-center">
+                <h1 class="text-4xl md:text-5xl font-bold mb-6">Willkommen bei ByteWise</h1>
+                <p class="text-xl mb-8">Ihre Lösung für professionelle Dienstleistungen</p>
+                <button class="bg-white text-blue-600 px-8 py-3 rounded-full hover:bg-blue-50 transition duration-300 font-semibold">
+                    Mehr erfahren
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-16">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <div class="text-blue-600 text-3xl mb-4">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Innovation</h3>
+                    <p class="text-gray-600">Modernste Lösungen für Ihre geschäftlichen Herausforderungen.</p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <div class="text-blue-600 text-3xl mb-4">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Experten-Team</h3>
+                    <p class="text-gray-600">Erfahrene Spezialisten für optimale Ergebnisse.</p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <div class="text-blue-600 text-3xl mb-4">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">Sicherheit</h3>
+                    <p class="text-gray-600">Höchste Standards für Ihre Datensicherheit.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="bg-gray-100 py-16">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="md:w-1/2">
+                    <img src="https://via.placeholder.com/600x400" alt="Über uns" class="rounded-lg shadow-lg">
+                </div>
+                <div class="md:w-1/2">
+                    <h2 class="text-3xl font-bold mb-6 text-gray-800">Über unser Unternehmen</h2>
+                    <p class="text-gray-600 mb-6">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
+                    <button class="bg-blue-600 text-white px-6 py-3 rounded-full hover:bg-blue-700 transition duration-300">
+                        Mehr über uns
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="bg-blue-600 text-white py-16">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-6">Bereit für den nächsten Schritt?</h2>
+            <p class="text-xl mb-8">Kontaktieren Sie uns noch heute für ein unverbindliches Gespräch.</p>
+            <button class="bg-white text-blue-600 px-8 py-3 rounded-full hover:bg-blue-50 transition duration-300 font-semibold">
+                Kontakt aufnehmen
+            </button>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-16">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Was unsere Kunden sagen</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <div class="text-blue-600 mb-4">
+                        <i class="fas fa-quote-left text-2xl"></i>
+                    </div>
+                    <p class="text-gray-600 mb-4">"Ausgezeichneter Service und professionelle Betreuung. Sehr zu empfehlen!"</p>
+                    <div class="font-semibold">- Max Mustermann</div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <div class="text-blue-600 mb-4">
+                        <i class="fas fa-quote-left text-2xl"></i>
+                    </div>
+                    <p class="text-gray-600 mb-4">"Innovative Lösungen und kompetente Beratung. Wir sind sehr zufrieden."</p>
+                    <div class="font-semibold">- Anna Schmidt</div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <div class="text-blue-600 mb-4">
+                        <i class="fas fa-quote-left text-2xl"></i>
+                    </div>
+                    <p class="text-gray-600 mb-4">"Schnelle und zuverlässige Umsetzung. Genau das, was wir gesucht haben."</p>
+                    <div class="font-semibold">- Peter Weber</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="footer"></div>
+</body>
+</html>
