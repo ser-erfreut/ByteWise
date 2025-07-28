@@ -64,3 +64,12 @@ function showError(type, message) {
         }, 500);
     }, 5000);
 }
+async function getIp(){
+      const ip = fetch('https://api.ipify.org?format=json')
+        .then(res => res.json())
+
+
+    await ip.then(data => {
+        return data.ip;
+    })
+}

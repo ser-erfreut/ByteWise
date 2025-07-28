@@ -45,9 +45,17 @@
 
             <!-- Berechnen Button -->
             <div class="text-center mb-8">
+                <button onclick="myIpAdress()"
+                        class="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition duration-300 font-semibold">
+                    Meine IP verwenden
+                </button>
                 <button onclick="calculateSubnet()" 
                         class="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition duration-300 font-semibold">
                     Berechnen
+                </button>
+                <button onclick="speichern()" class="bg-gray-600 text-white px-8 py-3 rounded-lg hover:bg-gray-700 transition duration-300 font-semibold"
+                        id="speichernButton">
+                    Speichern
                 </button>
             </div>
 

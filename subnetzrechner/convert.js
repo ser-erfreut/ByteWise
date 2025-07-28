@@ -82,6 +82,8 @@ function speichern() {
 
         const entry = {
             id: Date.now(),
+            brodcastAddress: results.broadcastAddress,
+            networkAddress: results.networkAddress,
             timestamp: new Date().toISOString(),
             ipCidr: ipCidr,
             data: results
