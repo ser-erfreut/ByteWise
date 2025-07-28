@@ -67,3 +67,17 @@ function calculate(){
         resultsDiv.textContent = JSON.stringify(results, null, 2);
     }
 }
+document.getElementById('saveButton').addEventListener('click', function(){
+    const ipCidr = document.getElementById('ipAddress').value; 
+    
+    const results = calculateSubnet(ipCidr);
+
+    if(results.error){
+        alert(`Could not save data due to an error: ${results.error}`);
+        console.error("Error saving subnet data:", results.error);
+    } 
+    else{
+        localStorage.setItem('lastSubnetCalculation', JSON.stringify(results));
+        alert('Subnet data saved successfully!');
+    }
+});
