@@ -27,16 +27,18 @@ function calculateSubnet() {
     const anzahl = parseInt(document.getElementById('anzahl').value);
     const subMask = parseInt(document.getElementById('subMask').value);
 
+    if (ip1 === '' || ip2 === '' || ip3 === '' || ip4 === '' || anzahl === '' || subMask === '') {
+        showError('error', 'Bitte überprüfe deine Eingabe');
+        return;
+    }
+
    if (subMask === 8 ) {
        for (let i = 0; i < anzahl; i++) {
            if (ip2 !== 255){
                ip2++;
            } else if (ip3 !== 255){
-               ip2 = 0;
                ip3++;
            } else if (ip4 !== 255){
-               ip2 = 0;
-               ip3 = 0;
                ip4++;
            } else {
                break;
@@ -48,7 +50,6 @@ function calculateSubnet() {
            if (ip3 !== 255) {
                ip3++;
            } else if (ip4 !== 255) {
-               ip3 = 0;
                ip4++;
            } else {
                break;
@@ -67,7 +68,6 @@ function calculateSubnet() {
            }
 
            arrReturn[i] = ip1 + '.' + ip2 + '.' + ip3 + '.' + ip4;
-
        }
 
    } else {
