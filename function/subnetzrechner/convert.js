@@ -73,11 +73,11 @@ document.getElementById('saveButton').addEventListener('click', function(){
     const results = calculateSubnet(ipCidr);
 
     if(results.error){
-        alert(`Could not save data due to an error: ${results.error}`);
+        showError('error', 'Die Daten konnten nicht gespeichert werden.');
         console.error("Error saving subnet data:", results.error);
     } 
     else{
         localStorage.setItem('lastSubnetCalculation', JSON.stringify(results));
-        alert('Subnet data saved successfully!');
+        showError('success', 'Subnet data saved successfully!');
     }
 });

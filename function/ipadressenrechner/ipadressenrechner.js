@@ -37,11 +37,8 @@ function calculateSubnet() {
            if (ip2 !== 255){
                ip2++;
            } else if (ip3 !== 255){
-               ip2 = 0;
                ip3++;
            } else if (ip4 !== 255){
-               ip2 = 0;
-               ip3 = 0;
                ip4++;
            } else {
                break;
@@ -53,7 +50,6 @@ function calculateSubnet() {
            if (ip3 !== 255) {
                ip3++;
            } else if (ip4 !== 255) {
-               ip3 = 0;
                ip4++;
            } else {
                break;
@@ -72,7 +68,6 @@ function calculateSubnet() {
            }
 
            arrReturn[i] = ip1 + '.' + ip2 + '.' + ip3 + '.' + ip4;
-
        }
 
    } else {
