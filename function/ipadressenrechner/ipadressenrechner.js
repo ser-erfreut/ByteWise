@@ -18,39 +18,66 @@ function validateNumber(input) {
 }
 
 function calculateSubnet() {
-    // IP-Adresse zusammenbauen
-    const ip1 = document.getElementById('ip1').value;
-    const ip2 = document.getElementById('ip2').value;
-    const ip3 = document.getElementById('ip3').value;
-    const ip4 = document.getElementById('ip4').value;
+    let arrReturn = [];
 
-    // Subnetzmaske zusammenbauen
-    const sub1 = document.getElementById('sub1').value;
-    const sub2 = document.getElementById('sub2').value;
-    const sub3 = document.getElementById('sub3').value;
-    const sub4 = document.getElementById('sub4').value;
+    let ip1 = document.getElementById('sub1').value;
+    let ip2 = document.getElementById('sub2').value;
+    let ip3 = document.getElementById('sub3').value;
+    let ip4 = document.getElementById('sub4').value;
+    const anzahl = parseInt(document.getElementById('anzahl').value);
+    const subMask = parseInt(document.getElementById('subMask').value);
 
-    // Berechnung durchführen
-    const ipBinary = [ip1, ip2, ip3, ip4].map(x => parseInt(x))
-        .map(x => x.toString(2).padStart(8, '0')).join('');
-    const subnetBinary = [sub1, sub2, sub3, sub4].map(x => parseInt(x))
-        .map(x => x.toString(2).padStart(8, '0')).join('');
+   if (subMask === 8 ) {
+       for (let i = 0; i < anzahl; i++) {
+           if (ip2 !== 255){
+               ip2++;
+           } else if (ip3 !== 255){
+               ip2 = 0;
+               ip3++;
+           } else if (ip4 !== 255){
+               ip2 = 0;
+               ip3 = 0;
+               ip4++;
+           } else {
+               break;
+           }
+           arrReturn[i] = ip1 + '.' + ip2 + '.' + ip3 + '.' + ip4;
+       }
+   } else if (subMask === 16 ) {
+       for (let i = 0; i < anzahl; i++) {
+           if (ip3 !== 255) {
+               ip3++;
+           } else if (ip4 !== 255) {
+               ip3 = 0;
+               ip4++;
+           } else {
+               break;
+           }
 
-    // Netzwerk-ID berechnen
-    const networkBinary = ipBinary.split('').map((bit, index) =>
-        bit & subnetBinary[index]).join('');
+           arrReturn[i] = ip1 + '.' + ip2 + '.' + ip3 + '.' + ip4;
+       }
+   }
+   else if (subMask === 24 ) {
+       for (let i = 0; i < anzahl; i++) {
+           if (ip4 !== 255) {
+               ip3 = 0;
+               ip4++;
+           } else {
+               break;
+           }
 
-    // Broadcast-Adresse berechnen
-    const broadcastBinary = networkBinary.split('').map((bit, index) =>
-        index < subnetBinary.indexOf('0') ? bit : '1').join('');
+           arrReturn[i] = ip1 + '.' + ip2 + '.' + ip3 + '.' + ip4;
 
-    // Binär zu Dezimal konvertieren
-    const networkIP = binaryToIP(networkBinary);
-    const broadcastIP = binaryToIP(broadcastBinary);
+       }
 
-    // Ergebnisse anzeigen
-    document.getElementById('networkResult').textContent = networkIP;
-    document.getElementById('broadcastResult').textContent = broadcastIP;
+   } else {
+        showError('error', 'Keine gÃ¼ltige Subnetzmaske');
+   }
+
+   arrReturn.forEach(element => {
+       const htmlElement = document.getElementById('neueSubnetzmasken');
+       htmlElement.innerHTML += `<li>${element}</li>`;
+   })
 }
 
 function binaryToIP(binary) {
