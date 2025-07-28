@@ -61,23 +61,40 @@ function calculate(){
     const resultsDiv = document.getElementById('results');
             
     if(results.error){
-        resultsDiv.textContent = `Fehler: ${results.error}`;
+        showError('error',`Fehler: ${results.error}`);
     } 
     else{
         resultsDiv.textContent = JSON.stringify(results, null, 2);
     }
 }
-document.getElementById('saveButton').addEventListener('click', function(){
-    const ipCidr = document.getElementById('ipAddress').value; 
-    
+
+function speichern() {
+    const ipCidr = document.getElementById('ipAddress').value;
     const results = calculateSubnet(ipCidr);
 
-    if(results.error){
+    if (results.error) {
         showError('error', 'Die Daten konnten nicht gespeichert werden.');
         console.error("Error saving subnet data:", results.error);
-    } 
-    else{
-        localStorage.setItem('lastSubnetCalculation', JSON.stringify(results));
-        showError('success', 'Subnet data saved successfully!');
+        return;
     }
-});
+
+    try {
+        let savedCalculations = JSON.parse(localStorage.getItem('subnetCalculations')) || [];
+
+        const entry = {
+            id: Date.now(),
+            timestamp: new Date().toISOString(),
+            ipCidr: ipCidr,
+            data: results
+        };
+
+        savedCalculations.push(entry);
+
+        localStorage.setItem('subnetCalculations', JSON.stringify(savedCalculations));
+
+        showError('success', 'Subnet-Daten erfolgreich gespeichert!');
+    } catch (error) {
+        showError('error', 'Fehler beim Speichern der Daten');
+        console.error("Error saving data:", error);
+    }
+}
