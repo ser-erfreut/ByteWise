@@ -27,6 +27,11 @@ function calculateSubnet() {
     const anzahl = parseInt(document.getElementById('anzahl').value);
     const subMask = parseInt(document.getElementById('subMask').value);
 
+    if (ip1 === '' || ip2 === '' || ip3 === '' || ip4 === '' || anzahl === '' || subMask === '') {
+        showError('error', 'Bitte überprüfe deine Eingabe');
+        return;
+    }
+
    if (subMask === 8 ) {
        for (let i = 0; i < anzahl; i++) {
            if (ip2 !== 255){
