@@ -19,14 +19,29 @@ function getVerlauf(){
                     <div>Broadcast: ${entry.data.broadcastAddress}</div>
                     <div>Nutzbare Hosts: ${entry.data.usableHosts}</div>
                 </div>
+                <button onclick="copyText('${entry.ipCidr}')"
+                class="bg-blue-600 text-white px-6 py-3 rounded-full hover:bg-blue-800 transition duration-300 mt-5">
+                    Kopieren <i class="fa-regular fa-copy"></i>
+                </button>
                 <button onclick="deleteEntry(${entry.id})" 
-                        class="mt-2 text-red-600 text-sm hover:text-red-800">
-                    Löschen<i class="fa-solid fa-trash"></i>
+                    class="bg-red-600 text-white px-6 py-3 rounded-full hover:bg-red-800 transition duration-300 mt-5">
+                   Löschen  <i class="fa-regular fa-trash-can"></i>
                 </button>
             `;
         container.appendChild(entryDiv);
     })
 }
+
+async function copyText(text) {
+    try {
+        await navigator.clipboard.writeText(text);
+        showError('success','Text wurde kopiert!');
+    } catch (err) {
+        console.error('Fehler beim Kopieren:', err);
+        showError('error', 'Kopieren fehlgeschlagen');
+    }
+}
+
 
 function deleteEntry(id) {
     try {
