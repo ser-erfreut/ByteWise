@@ -6,6 +6,8 @@
     <title>Subnetz-Rechner</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="./convert.js"></script>
+
     <style>
         /* Optional: Für eine schönere Darstellung des JSON-Outputs */
         pre {
@@ -56,105 +58,6 @@
         </main>
 
     </div>
-
-    <script>
-        function ipToLong(ip){
-            return ip.split('.').reduce((acc, octet) => (acc << 8) + parseInt(octet, 10), 0) >>> 0;
-        }
-
-        function longToIp(long){
-            return[
-                (long >>> 24) & 255,
-                (long >>> 16) & 255,
-                (long >>> 8) & 255,
-                long & 255
-            ].join('.');
-        }
-
-        function calculateSubnet(ipCidr){
-            try{
-                if (!ipCidr || ipCidr.trim() === '') {
-                    throw new Error("Bitte geben Sie eine IP-Adresse mit CIDR-Notation ein.");
-                }
-
-                const [ip, cidrStr] = ipCidr.split('/');
-
-                if(!cidrStr || cidrStr.trim() === ''){
-                    throw new Error("CIDR-Notation fehlt (z.B. /24).");
-                }
-                if(!/^((\d{1,3}\.){3}\d{1,3})$/.test(ip) || ip.split('.').some(octet => parseInt(octet) > 255)) {
-                    throw new Error("Ungültige IP-Adresse.");
-                }
-                if(ip.split('.').length !== 4){
-                    throw new Error("IP-Adresse muss vier Oktette enthalten.");
-                }
-
-                const cidr = parseInt(cidrStr, 10);
-                if(isNaN(cidr) || cidr < 0 || cidr > 32){
-                    throw new Error("Ungültige CIDR-Notation. Muss zwischen 0 und 32 liegen.");
-                }
-
-                const ipLong = ipToLong(ip);
-                const subnetMaskLong = (0xFFFFFFFF << (32 - cidr)) >>> 0;
-                const networkAddressLong = (ipLong & subnetMaskLong) >>> 0;
-                const broadcastAddressLong = (networkAddressLong | ~subnetMaskLong) >>> 0;
-                
-                const firstHostLong = networkAddressLong + 1;
-                const lastHostLong = broadcastAddressLong - 1;
-
-                const totalHosts = Math.pow(2, 32 - cidr);
-                const usableHosts = totalHosts >= 2 ? totalHosts - 2 : 0;
-                
-                const hostRange = usableHosts > 0 ? `${longToIp(firstHostLong)} - ${longToIp(lastHostLong)}` : 'N/A';
-
-                return{
-                    "IP-Adresse": ip,
-                    "Subnetzmaske": longToIp(subnetMaskLong),
-                    "Netzwerkadresse": longToIp(networkAddressLong),
-                    "Broadcast-Adresse": longToIp(broadcastAddressLong),
-                    "Host-Bereich": hostRange,
-                    "Gesamte Hosts": totalHosts,
-                    "Nutzbare Hosts": usableHosts
-                };
-            } 
-            catch(error){
-                return { error: error.message };
-            }
-        }
-
-        function calculate(){
-            const ipCidr = document.getElementById('ipAddress').value;
-            const results = calculateSubnet(ipCidr);
-            const resultsDiv = document.getElementById('results');
-            
-            // Verwenden Sie <pre> für eine formatierte Ausgabe
-            const pre = document.createElement('pre');
-            
-            if(results.error){
-                pre.textContent = `Fehler: ${results.error}`;
-                pre.className = 'text-red-600 font-semibold';
-            } 
-            else{
-                pre.textContent = JSON.stringify(results, null, 2);
-            }
-            resultsDiv.innerHTML = ''; // Vorherige Ergebnisse löschen
-            resultsDiv.appendChild(pre);
-        }
-
-        document.getElementById('saveButton').addEventListener('click', function(){
-            const ipCidr = document.getElementById('ipAddress').value; 
-            const results = calculateSubnet(ipCidr);
-
-            if(results.error){
-                alert(`Daten konnten aufgrund eines Fehlers nicht gespeichert werden: ${results.error}`);
-                console.error("Fehler beim Speichern der Subnetzdaten:", results.error);
-            } 
-            else{
-                localStorage.setItem('lastSubnetCalculation', JSON.stringify(results));
-                alert('Subnetzdaten erfolgreich gespeichert!');
-            }
-        });
-    </script>
 
 </body>
 </html>
