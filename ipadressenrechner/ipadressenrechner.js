@@ -18,6 +18,8 @@ function validateNumber(input) {
 }
 
 function calculateSubnet() {
+    const htmlElement = document.getElementById('neueSubnetzmasken');
+    htmlElement.innerHTML = '';
     let arrReturn = [];
 
     let ip1 = document.getElementById('sub1').value;
@@ -27,7 +29,7 @@ function calculateSubnet() {
     const anzahl = parseInt(document.getElementById('anzahl').value);
     const subMask = parseInt(document.getElementById('subMask').value);
 
-    if (ip1 === '' || ip2 === '' || ip3 === '' || ip4 === '' || anzahl === '' || subMask === '') {
+    if (ip1 === '' || ip2 === '' || ip3 === '' || ip4 === '' || anzahl === '' || subMask === '' || anzahl < 1) {
         showError('error', 'Bitte überprüfe deine Eingabe');
         return;
     }
@@ -76,12 +78,95 @@ function calculateSubnet() {
 
    arrReturn.forEach(element => {
        const htmlElement = document.getElementById('neueSubnetzmasken');
-       htmlElement.innerHTML += `<li>${element}</li>`;
+       htmlElement.innerHTML += `<li id="ipAdress">${element}</li>`;
    })
 }
 
-function binaryToIP(binary) {
-    return binary.match(/.{8}/g)
-        .map(byte => parseInt(byte, 2))
-        .join('.');
+function speichern() {
+    const htmlElement = document.getElementById('neueSubnetzmasken');
+
+    if(htmlElement.innerHTML !== ''){
+        try {
+            document.querySelectorAll('#ipAdress').forEach(element => {
+                let savedCalculations = JSON.parse(localStorage.getItem('subnetCalculations')) || [];
+
+                const elements = {
+                    id: Date.now(),
+                    timestamp: new Date().toISOString(),
+                    ipCidr: element.innerText,
+                };
+
+                savedCalculations.push(elements);
+
+                localStorage.setItem('ipAdresses', JSON.stringify(savedCalculations));
+            })
+            showError('success', 'IP-Adressen erfolgreich gespeichert!');
+        } catch (error) {
+            showError('error', 'Fehler beim Speichern der Daten');
+            console.error("Error saving data:", error);
+        }
+
+
+    } else {
+        showError('info', 'Lasse dir erst IP-Adressen generieren bevor du sie speichern kannst.');
+    }
+}
+
+function myIpAdress(){
+    const ip = getIp();
+
+    if (ip){
+
+        endIp = splitIpAddress(ip.ip)
+
+        if (endIp.success){
+            document.getElementById('sub1').value = endIp.arrays.ip1[0];
+            document.getElementById('sub2').value = endIp.arrays.ip2[0];
+            document.getElementById('sub3').value = endIp.arrays.ip3[0];
+            document.getElementById('sub4').value = endIp.arrays.ip4[0];
+        } else {
+            showError('error', endIp.error.message );
+        }
+
+
+
+
+    }
+}
+
+function splitIpAddress(text) {
+    try {
+        const parts = text.split('.');
+
+        // Prüfen ob wir genau 4 Teile haben
+        if (parts.length !== 4) {
+            throw new Error('Ungültige IP-Adresse');
+        }
+
+        const arrays = parts.map(part => {
+            const num = parseInt(part, 10);
+
+            if (isNaN(num) || num < 0 || num > 255) {
+                throw new Error('Jede Zahl muss zwischen 0 und 255 liegen');
+            }
+            return [num];
+        });
+
+        const [array1, array2, array3, array4] = arrays;
+
+        return {
+            success: true,
+            arrays: {
+                ip1: array1,
+                ip2: array2,
+                ip3: array3,
+                ip4: array4
+            }
+        };
+    } catch (error) {
+        return {
+            success: false,
+            error: error.message
+        };
+    }
 }
