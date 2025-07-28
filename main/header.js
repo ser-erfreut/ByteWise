@@ -1,12 +1,12 @@
 function header(){
     fetch('../header/header.html').then(res => res.text())
         .then(data => document.getElementById('header')
-        .innerHTML = data)
+        .innerHTML = data);
 }
 function footer(){
     fetch('../footer/footer.html').then(res => res.text())
         .then(data => document.getElementById('footer')
-        .innerHTML = data)
+        .innerHTML = data);
 }
 function mainLoad(){
     header();
@@ -18,7 +18,7 @@ function mainLoad(){
  */
 function getSubfolderCount() {
     try {
-        // Hole den aktuellen Pfad und entferne führende/nachfolgende Slashes
+        // Hole den aktuellen Pfad und entferne fï¿½hrende/nachfolgende Slashes
         const currentPath = window.location.pathname.replace(/^\/|\/$/g, '');
 
         // Wenn der Pfad leer ist, sind wir im Root
@@ -26,8 +26,8 @@ function getSubfolderCount() {
             return 0;
         }
 
-        // Zähle die Slashes im bereinigten Pfad
-        // Jeder Slash repräsentiert eine Ordnerebene
+        // Zï¿½hle die Slashes im bereinigten Pfad
+        // Jeder Slash reprï¿½sentiert eine Ordnerebene
         const subfolderCount = (currentPath.match(/\//g) || []).length + 1;
 
         return subfolderCount;
