@@ -7,8 +7,12 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="./ipgeolocator.js"></script>
     <script src="../main/main.js"></script>
+    <script src="../main/header.js"></script>
+    <link rel="stylesheet" href="../header/header.css">
 </head>
-<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+<body  onload="mainLoad()">
+<div class="bg-gray-100 flex items-center justify-center min-h-screen">
+<div id="header"></div>
 
     <div class="container mx-auto p-5">
 
@@ -63,6 +67,12 @@
             </div>
         </main>
     </div>
+</div>
 
 </body>
+<footer>
+    <div id="footer"></div>
+
+</footer>
+
 </html>
