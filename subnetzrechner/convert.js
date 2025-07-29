@@ -103,7 +103,10 @@ function speichern() {
 async function myIpAdress() {
     const ip = await getIp();
 
-    if (ip !== null) {
+    if (ip != null) {
         document.getElementById('ipAddress').value = ip;
+    } else {
+        showError('warning', 'Bitte akzeptiere erst die Cookies.');
+        cookies();
     }
 }
