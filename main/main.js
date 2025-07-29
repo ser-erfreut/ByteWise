@@ -64,12 +64,13 @@ function showError(type, message) {
         }, 500);
     }, 5000);
 }
-async function getIp(){
-      const ip = fetch('https://api.ipify.org?format=json')
-        .then(res => res.json())
-
-
-    await ip.then(data => {
+async function getIp() {
+    try {
+        const response = await fetch('https://api.ipify.org?format=json');
+        const data = await response.json();
         return data.ip;
-    })
+    } catch (error) {
+        console.error('Fehler beim Abrufen der IP:', error);
+        return null;
+    }
 }
