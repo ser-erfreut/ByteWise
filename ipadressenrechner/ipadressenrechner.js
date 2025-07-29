@@ -112,7 +112,7 @@ function speichern() {
     }
 }
 
-
+async function myIpAdress(){
 
     if (getCookie() === false){
         showError('error', 'Bitte aktepzieren Sie die Cookies.');
@@ -121,7 +121,7 @@ function speichern() {
     }
     const ip = await getIp();
 
-        endIp = splitIpAddress(ip)
+        endIp = await splitIpAddress(ip)
 
         if (endIp.success){
             document.getElementById('sub1').value = endIp.arrays.ip1[0];
@@ -131,8 +131,8 @@ function speichern() {
         } else {
             showError('error', endIp.error.message );
         }
-    }
 }
+
 
 function splitIpAddress(text) {
     try {
