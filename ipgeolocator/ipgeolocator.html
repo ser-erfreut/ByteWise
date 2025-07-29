@@ -6,64 +6,63 @@
     <title>IP-Adressen-Geolocator</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="./ipgeolocator.js"></script>
+    <script src="../main/main.js"></script>
 </head>
-<body class="bg-gray-100 dark:bg-gray-900 flex items-center justify-center min-h-screen">
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
 
     <div class="container mx-auto p-5">
 
         <header class="text-center mb-10">
-            <h1 class="text-4xl font-bold text-gray-800 dark:text-white">IP-Adressen-Geolocator</h1>
-            <p class="text-gray-600 dark:text-gray-400 mt-2">Geben Sie eine IP-Adresse ein, um deren Standort zu finden.</p>
+            <h1 class="text-4xl font-bold text-gray-800">IP-Adressen-Geolocator</h1>
+            <p class="text-gray-600 mt-2">Geben Sie eine IP-Adresse ein, um deren Standort zu finden.</p>
         </header>
 
         <main>
             <!-- Suchformular-Karte -->
-            <div class="max-w-xl mx-auto bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+            <div class="max-w-xl mx-auto bg-white rounded-lg shadow-md p-6">
                 <div class="flex flex-col sm:flex-row gap-4">
-                    <input type="text" id="InputIP" placeholder="Geben Sie eine IP-Adresse ein" class="flex-grow p-3 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white">
+                    <input type="text" id="InputIP" placeholder="Geben Sie eine IP-Adresse ein" class="flex-grow p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
                     <button onclick="geolocate()" id="search-btn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-md transition duration-300 ease-in-out">
                         Suchen
+                    </button>
+                    <button onclick="geolocateOwnIP()" id="search-own-ip-btn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-md transition duration-300 ease-in-out">
+                        Meine IP
                     </button>
                 </div>
             </div>
 
             <!-- Ergebnis-Karte -->
-            <div id="result" class="max-w-xl mx-auto bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mt-8">
-                <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-4">Standortdetails</h2>
+            <div id="result" class="max-w-xl mx-auto bg-white rounded-lg shadow-md p-6 mt-8">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">Standortdetails</h2>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-6">
                     <div>
-                        <p class="text-sm text-gray-500 dark:text-gray-400">IP-Adresse</p>
-                        <p id="result-ip" class="font-semibold text-lg text-gray-900 dark:text-white">-</p>
+                        <p class="text-sm text-gray-500">IP-Adresse</p>
+                        <p id="result-ip" class="font-semibold text-lg text-gray-900">-</p>
                     </div>
                     <div>
-                        <p class="text-sm text-gray-500 dark:text-gray-400">Land</p>
-                        <p id="result-country" class="font-semibold text-lg text-gray-900 dark:text-white">-</p>
+                        <p class="text-sm text-gray-500">Land</p>
+                        <p id="result-country" class="font-semibold text-lg text-gray-900">-</p>
                     </div>
                     <div>
-                        <p class="text-sm text-gray-500 dark:text-gray-400">Region</p>
-                        <p id="result-region" class="font-semibold text-lg text-gray-900 dark:text-white">-</p>
+                        <p class="text-sm text-gray-500">Region</p>
+                        <p id="result-region" class="font-semibold text-lg text-gray-900">-</p>
                     </div>
                     <div>
-                        <p class="text-sm text-gray-500 dark:text-gray-400">Stadt</p>
-                        <p id="result-city" class="font-semibold text-lg text-gray-900 dark:text-white">-</p>
+                        <p class="text-sm text-gray-500">Stadt</p>
+                        <p id="result-city" class="font-semibold text-lg text-gray-900">-</p>
                     </div>
                     <div>
-                        <p class="text-sm text-gray-500 dark:text-gray-400">Postleitzahl</p>
-                        <p id="result-zip" class="font-semibold text-lg text-gray-900 dark:text-white">-</p>
+                        <p class="text-sm text-gray-500">Postleitzahl</p>
+                        <p id="result-zip" class="font-semibold text-lg text-gray-900">-</p>
                     </div>
                     <div>
-                        <p class="text-sm text-gray-500 dark:text-gray-400">Internetdienstanbieter (ISP)</p>
-                        <p id="result-isp" class="font-semibold text-lg text-gray-900 dark:text-white">-</p>
+                        <p class="text-sm text-gray-500">Internetdienstanbieter (ISP)</p>
+                        <p id="result-isp" class="font-semibold text-lg text-gray-900">-</p>
                     </div>
                 </div>
             </div>
         </main>
     </div>
-
-    <!-- Hier würde die JavaScript-Logik zur Abfrage der API und zur Aktualisierung der Felder stehen -->
-    <script>
-        // document.getElementById('search-btn').addEventListener('click', () => { ... });
-    </script>
 
 </body>
 </html>
