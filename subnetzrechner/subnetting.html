@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Subnetz-Rechner</title>
-    
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="./convert.js"></script>
     <script src="../main/main.js"></script>
@@ -12,10 +12,10 @@
     <link rel="stylesheet" href="../header/header.css">
     
 </head>
-<body class="font-sans text-gray-800">
+<body class="font-sans text-gray-800" onload="mainLoad()">
     <div id="header"></div>
 
-    <div class="container mx-auto p-4 md:p-8 max-w-2xl">
+    <div class="container mx-auto pt-[200px] mb-[12%] max-w-2xl">
 
         <header class="text-center mb-8">
             <h1 class="text-3xl md:text-4xl font-bold text-gray-900">Subnetz-Rechner</h1>
@@ -23,7 +23,7 @@
         </header>
 
         <main class="bg-white rounded-lg shadow-md p-6">
-            
+
             <!-- Eingabebereich -->
             <div class="flex flex-col sm:flex-row items-center gap-4">
                 <div class="w-full">
@@ -31,17 +31,20 @@
                     <input type="text" id="ipAddress" placeholder="192.168.1.1/24"
                            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition">
                 </div>
-                
-                <div class="flex gap-2 w-full sm:w-auto">
-                    <button onclick="calculate()"
-                            class="w-full sm:w-auto bg-blue-600 text-white font-semibold py-2 px-6 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-200">
-                        Berechnen
-                    </button>
-                    <button id="saveButton" onclick="speichern()"
-                            class="w-full sm:w-auto bg-gray-600 text-white font-semibold py-2 px-6 rounded-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition duration-200">
-                        Speichern
-                    </button>
-                </div>
+            </div>
+            <div class="text-center mb-2 mt-6">
+                <button onclick="calculate()"
+                        class="w-full sm:w-auto bg-blue-600 text-white font-semibold py-2 px-6 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-200">
+                    Berechnen
+                </button>
+                <button id="saveButton" onclick="speichern()"
+                        class="w-full sm:w-auto bg-gray-600 text-white font-semibold py-2 px-6 rounded-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition duration-200">
+                    Speichern
+                </button>
+                <button onclick="myIpAdress()" class="w-full sm:w-auto bg-blue-600 text-white font-semibold py-2 px-6 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-200">
+                    Meine IP verwenden
+                </button>
+
             </div>
 
             <!-- Ergebnisbereich -->

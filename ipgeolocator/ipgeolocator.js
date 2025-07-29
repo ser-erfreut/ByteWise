@@ -2,22 +2,41 @@ function geolocate(){
     document.getElementById("search-btn").addEventListener("click", function() {
         var inputValueIP = document.getElementById("InputIP").value;
         if (inputValueIP) {
-            
             fetch(`http://ip-api.com/json/${inputValueIP}`)
                 .then(response => response.json())
                 .then(data => {
                     if (data.status === 'success') {
-                        alert(`IP Address: ${data.query}\nCountry: ${data.country}\nRegion: ${data.regionName}\nCity: ${data.city}\nISP: ${data.isp}`);
+                        document.getElementById("result-ip").textContent = data.query || '-';
+                        document.getElementById("result-country").textContent = data.country || '-';
+                        document.getElementById("result-region").textContent = data.regionName || '-';
+                        document.getElementById("result-city").textContent = data.city || '-';
+                        document.getElementById("result-zip").textContent = data.zip || '-';
+                        document.getElementById("result-isp").textContent = data.isp || '-';
                     } else {
-                        alert('Error retrieving data for the provided IP address.');
+                        document.getElementById("result-ip").textContent = '-';
+                        document.getElementById("result-country").textContent = '-';
+                        document.getElementById("result-region").textContent = '-';
+                        document.getElementById("result-city").textContent = '-';
+                        document.getElementById("result-zip").textContent = '-';
+                        document.getElementById("result-isp").textContent = '-';
                     }
                 })
                 .catch(error => {
-                    console.error('Error:', error);
-                    alert('An error occurred while fetching the IP address information.');
+                    showError('error', 'Fehler beim Abrufen der IP-Daten: ' + error);
+                    document.getElementById("result-ip").textContent = '-';
+                    document.getElementById("result-country").textContent = '-';
+                    document.getElementById("result-region").textContent = '-';
+                    document.getElementById("result-city").textContent = '-';
+                    document.getElementById("result-zip").textContent = '-';
+                    document.getElementById("result-isp").textContent = '-';
                 });
         } else {
-            alert('No IP address entered.');
+            document.getElementById("result-ip").textContent = '-';
+            document.getElementById("result-country").textContent = '-';
+            document.getElementById("result-region").textContent = '-';
+            document.getElementById("result-city").textContent = '-';
+            document.getElementById("result-zip").textContent = '-';
+            document.getElementById("result-isp").textContent = '-';
         }
     });
 }
@@ -25,27 +44,52 @@ function geolocateOwnIP(){
     document.getElementById("search-own-ip-btn").addEventListener("click", async function() {
         try {
             const ip = await getIp();
-
             if (ip) {
                 fetch(`http://ip-api.com/json/${ip}`)
                     .then(response => response.json())
                     .then(data => {
                         if (data.status === 'success') {
-                            alert(`Your IP Address: ${data.query}\nCountry: ${data.country}\nRegion: ${data.regionName}\nCity: ${data.city}\nISP: ${data.isp}`);
+                            document.getElementById("result-ip").textContent = data.query || '-';
+                            document.getElementById("result-country").textContent = data.country || '-';
+                            document.getElementById("result-region").textContent = data.regionName || '-';
+                            document.getElementById("result-city").textContent = data.city || '-';
+                            document.getElementById("result-zip").textContent = data.zip || '-';
+                            document.getElementById("result-isp").textContent = data.isp || '-';
                         } else {
-                            alert('Error retrieving data for your IP address.');
+                            document.getElementById("result-ip").textContent = '-';
+                            document.getElementById("result-country").textContent = '-';
+                            document.getElementById("result-region").textContent = '-';
+                            document.getElementById("result-city").textContent = '-';
+                            document.getElementById("result-zip").textContent = '-';
+                            document.getElementById("result-isp").textContent = '-';
                         }
                     })
                     .catch(error => {
-                        console.error('Error:', error);
-                        alert('An error occurred while fetching your IP address information.');
+                        showError('error', 'Fehler beim Abrufen der eigenen IP-Daten: ' + error);
+                        document.getElementById("result-ip").textContent = '-';
+                        document.getElementById("result-country").textContent = '-';
+                        document.getElementById("result-region").textContent = '-';
+                        document.getElementById("result-city").textContent = '-';
+                        document.getElementById("result-zip").textContent = '-';
+                        document.getElementById("result-isp").textContent = '-';
                     });
             } else {
-                alert('Could not retrieve your IP address.');
+                showError('error', 'Eigene IP konnte nicht abgerufen werden.');
+                document.getElementById("result-ip").textContent = '-';
+                document.getElementById("result-country").textContent = '-';
+                document.getElementById("result-region").textContent = '-';
+                document.getElementById("result-city").textContent = '-';
+                document.getElementById("result-zip").textContent = '-';
+                document.getElementById("result-isp").textContent = '-';
             }
         } catch (error) {
-            console.error('Error:', error);
-            alert('An error occurred while fetching your IP address.');
+            showError('error', 'Fehler beim Abrufen der eigenen IP: ' + error);
+            document.getElementById("result-ip").textContent = '-';
+            document.getElementById("result-country").textContent = '-';
+            document.getElementById("result-region").textContent = '-';
+            document.getElementById("result-city").textContent = '-';
+            document.getElementById("result-zip").textContent = '-';
+            document.getElementById("result-isp").textContent = '-';
         }
     });
 }
