@@ -1,18 +1,118 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>Verlauf</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verlauf - ByteWise</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="verlauf.js"></script>
     <script src="../main/main.js"></script>
     <script src="../main/header.js"></script>
+    <script src="verlauf.js"></script>
+    <link rel="stylesheet" href="../header/header.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
-<body onload="mainLoad(); getVerlauf()" class="bg-gray-50">
-<div id="header"></div>
-<div id="verlauf"></div>
-<div id="footer"></div>
+<body class="bg-gray-50 min-h-screen" onload="mainLoad(); getVerlauf()">
+    <div id="header"></div>
 
+    <!-- Hero Section -->
+    <section class="bg-blue-600 text-white py-20 pt-[200px]">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto text-center">
+                <h1 class="text-4xl md:text-5xl font-bold mb-6">Berechnungsverlauf</h1>
+                <p class="text-xl text-blue-100">Ihre gespeicherten Berechnungen auf einen Blick</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="container mx-auto px-4 py-12">
+        <div class="max-w-4xl mx-auto">
+            <!-- Tabs -->
+            <div class="bg-white rounded-lg shadow-lg mb-8">
+                <div class="border-b border-gray-200">
+                    <div class="flex">
+                        <button onclick="showSubnets()" 
+                                class="px-6 py-4 text-blue-600 hover:text-blue-800 font-medium border-b-2 border-blue-600 focus:outline-none">
+                            <i class="fas fa-network-wired mr-2"></i>
+                            Subnetz-Berechnungen
+                        </button>
+                        <button onclick="showIps()" 
+                                class="px-6 py-4 text-gray-500 hover:text-gray-700 font-medium hover:border-b-2 hover:border-gray-300 focus:outline-none">
+                            <i class="fas fa-calculator mr-2"></i>
+                            IP-Adressen
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Subnetz-Verlauf -->
+                <div id="subnetsHistory" class="p-6">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-2xl font-semibold text-gray-800">Gespeicherte Subnetz-Berechnungen</h2>
+                        <button onclick="clearSubnets()" 
+                                class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition duration-300">
+                            <i class="fas fa-trash-alt mr-2"></i>
+                            Verlauf löschen
+                        </button>
+                    </div>
+                    <div id="subnetResults" class="space-y-4">
+                        <!-- Hier werden die Subnetz-Ergebnisse dynamisch eingefügt -->
+                    </div>
+                </div>
+
+                <!-- IP-Adressen-Verlauf -->
+                <div id="ipsHistory" class="p-6 hidden">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-2xl font-semibold text-gray-800">Gespeicherte IP-Adressen</h2>
+                        <button onclick="clearIps()" 
+                                class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition duration-300">
+                            <i class="fas fa-trash-alt mr-2"></i>
+                            Verlauf löschen
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div id="verlauf" class="space-y-4">
+            </div>
+
+            <!-- Template für Subnetz-Einträge -->
+            <template id="subnetTemplate">
+                <div class="bg-gray-50 rounded-lg p-6 hover:shadow-md transition duration-300">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="font-semibold text-lg text-gray-800 mb-2">Subnetz-Berechnung</h3>
+                            <div class="space-y-2 text-gray-600">
+                                <p><span class="font-medium">IP/CIDR:</span> <span class="ipCidr font-mono"></span></p>
+                                <p><span class="font-medium">Zeitpunkt:</span> <span class="timestamp"></span></p>
+                            </div>
+                        </div>
+                        <button onclick="deleteEntry(this)" 
+                                class="text-red-600 hover:text-red-800 focus:outline-none">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+            </template>
+
+            <!-- Template für IP-Adressen-Einträge -->
+            <template id="ipTemplate">
+                <div class="bg-gray-50 rounded-lg p-6 hover:shadow-md transition duration-300">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="font-semibold text-lg text-gray-800 mb-2">IP-Adresse</h3>
+                            <div class="space-y-2 text-gray-600">
+                                <p><span class="font-medium">IP:</span> <span class="ip font-mono"></span></p>
+                                <p><span class="font-medium">Zeitpunkt:</span> <span class="timestamp"></span></p>
+                            </div>
+                        </div>
+                        <button onclick="deleteEntry(this)" 
+                                class="text-red-600 hover:text-red-800 focus:outline-none">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+            </template>
+        </div>
+    </div>
+
+    <div id="footer"></div>
 </body>
 </html>
