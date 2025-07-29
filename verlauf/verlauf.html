@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="../header/header.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
-<body class="bg-gray-50 min-h-screen" onload="mainLoad(); getVerlauf()">
+<body class="bg-gray-50 min-h-screen" onload="mainLoad(); getVerlauf(false)">
     <div id="header"></div>
 
     <!-- Hero Section -->
@@ -24,18 +24,18 @@
         </div>
     </section>
 
-    <div class="container mx-auto px-4 py-12">
+    <div class="container mx-auto px-4 py-12 mb-[100px]">
         <div class="max-w-4xl mx-auto">
             <!-- Tabs -->
             <div class="bg-white rounded-lg shadow-lg mb-8">
                 <div class="border-b border-gray-200">
                     <div class="flex">
-                        <button onclick="showSubnets()" 
+                        <button onclick="getVerlauf(false)" id='subnetsButton'
                                 class="px-6 py-4 text-blue-600 hover:text-blue-800 font-medium border-b-2 border-blue-600 focus:outline-none">
                             <i class="fas fa-network-wired mr-2"></i>
                             Subnetz-Berechnungen
                         </button>
-                        <button onclick="showIps()" 
+                        <button onclick="getVerlauf(true)" id="ipAdressenButton"
                                 class="px-6 py-4 text-gray-500 hover:text-gray-700 font-medium hover:border-b-2 hover:border-gray-300 focus:outline-none">
                             <i class="fas fa-calculator mr-2"></i>
                             IP-Adressen
@@ -46,8 +46,13 @@
                 <!-- Subnetz-Verlauf -->
                 <div id="subnetsHistory" class="p-6">
                     <div class="flex justify-between items-center mb-6">
-                        <h2 class="text-2xl font-semibold text-gray-800">Gespeicherte Subnetz-Berechnungen</h2>
-                        <button onclick="clearSubnets()" 
+                        <h2 class="text-2xl font-semibold text-gray-800" id="verlaufText">Gespeicherte Subnetz-Berechnungen</h2>
+                        <button onclick="deleteAllEntries()" id="verlaufLoeschen"
+                                class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition duration-300">
+                            <i class="fas fa-trash-alt mr-2"></i>
+                            Verlauf löschen
+                        </button>
+                        <button id="ipAdressenLoeschen" onclick="deleteAllEntries(true)"
                                 class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition duration-300">
                             <i class="fas fa-trash-alt mr-2"></i>
                             Verlauf löschen
@@ -69,9 +74,10 @@
                         </button>
                     </div>
                 </div>
+                <div id="verlauf" class="space-y-4">
+                </div>
             </div>
-            <div id="verlauf" class="space-y-4">
-            </div>
+
 
             <!-- Template für Subnetz-Einträge -->
             <template id="subnetTemplate">

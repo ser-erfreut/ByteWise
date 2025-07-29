@@ -88,7 +88,7 @@ function speichern() {
     if(htmlElement.innerHTML !== ''){
         try {
             document.querySelectorAll('#ipAdress').forEach(element => {
-                let savedCalculations = JSON.parse(localStorage.getItem('subnetCalculations')) || [];
+                let savedCalculations = JSON.parse(localStorage.getItem('ipAdresses')) || [];
 
                 const elements = {
                     id: Date.now(),
@@ -112,7 +112,7 @@ function speichern() {
     }
 }
 
-async function myIpAdress() {
+
 
     if (getCookie() === false){
         showError('error', 'Bitte aktepzieren Sie die Cookies.');
@@ -120,8 +120,6 @@ async function myIpAdress() {
         return;
     }
     const ip = await getIp();
-
-    if (ip !== null) {
 
         endIp = splitIpAddress(ip)
 
