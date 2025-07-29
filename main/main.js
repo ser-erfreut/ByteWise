@@ -1,15 +1,12 @@
 function showError(type, message) {
-    // Entferne bestehende Fehlermeldungen
     const existingError = document.getElementById('error-notification');
     if (existingError) {
         existingError.remove();
     }
 
-    // Erstelle das Fehler-Element
     const errorDiv = document.createElement('div');
     errorDiv.id = 'error-notification';
 
-    // Setze Styles basierend auf dem Fehlertyp
     let bgColor, textColor, icon;
     switch(type) {
         case 'error':
@@ -34,7 +31,6 @@ function showError(type, message) {
             break;
     }
 
-    // Setze HTML-Inhalt
     errorDiv.className = `fixed top-4 right-4 flex items-center p-4 mb-4 ${bgColor} ${textColor} rounded-lg shadow-lg transition-all duration-500 transform translate-x-full`;
     errorDiv.innerHTML = `
         <div class="inline-flex flex-shrink-0 mr-3">
@@ -65,12 +61,69 @@ function showError(type, message) {
     }, 5000);
 }
 async function getIp() {
-    try {
-        const response = await fetch('https://api.ipify.org?format=json');
-        const data = await response.json();
-        return data.ip;
-    } catch (error) {
-        console.error('Fehler beim Abrufen der IP:', error);
-        return null;
+    if (getCookie() === true) {
+        try {
+            const response = await fetch('https://api.ipify.org?format=json');
+            const data = await response.json();
+            return data.ip;
+        } catch (error) {
+            console.error('Fehler beim Abrufen der IP:', error);
+            return null;
+        }
+    }
+}
+
+function cookies(){
+    const cookieDiv = document.createElement('div');
+    cookieDiv.className = 'fixed bottom-0 left-0 right-0 bg-white shadow-lg border-t border-gray-200 p-6 transform transition-transform duration-500 ease-in-out z-50';
+    cookieDiv.innerHTML = `
+        <div class="max-w-screen-xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-4">
+                <div class="text-blue-600">
+                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z"/>
+                    </svg>
+                </div>
+                <div class="text-gray-800">
+                    <h3 class="font-semibold text-lg mb-1">Cookie-Einstellungen</h3>
+                    <p class="text-sm text-gray-600">Wir verwenden Cookies, um Ihre Erfahrung auf unserer Website zu verbessern.</p>
+                </div>
+            </div>
+            <div class="flex gap-3">
+                <button onclick="this.closest('div.fixed').remove(); setCookieFalse()" 
+                        class="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 transition-colors duration-300">
+                    Ablehnen
+                </button>
+                <button onclick="this.closest('div.fixed').remove(); setCookieTrue()" 
+                        class="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-300">
+                    Akzeptieren
+                </button>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(cookieDiv);
+
+    requestAnimationFrame(() => {
+        cookieDiv.style.transform = 'translateY(0)';
+    });
+
+}
+function setCookieTrue(){
+    localStorage.setItem('cookie', 'true');
+    location.reload();
+}
+function setCookieFalse(){
+    localStorage.setItem('cookie', 'false');
+    location.reload();
+}
+
+function getCookie(){
+    const cookie = localStorage.getItem('cookie');
+    if (cookie === 'true'){
+        return true;
+    } else if (cookie === 'false') {
+        return false;
+    } else {
+        cookies();
     }
 }

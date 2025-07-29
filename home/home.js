@@ -1,12 +1,12 @@
 async function willkommen() {
-    try {
-        const ip = await getIp();
-        
-        if (ip) {
-            document.getElementById('willkommen').innerHTML = `Willkommen ${ip}`;
+        try {
+            const ip = await getIp();
+
+            if (ip) {
+                document.getElementById('willkommen').innerHTML = `Willkommen ${ip}`;
+            }
+        } catch (error) {
+            console.error('Fehler beim Abrufen der IP:', error);
         }
-    } catch (error) {
-        console.error('Fehler beim Abrufen der IP:', error);
-        document.getElementById('willkommen').innerHTML = 'Willkommen';
-    }
+
 }

@@ -29,7 +29,7 @@ function calculateSubnet() {
     const anzahl = parseInt(document.getElementById('anzahl').value);
     const subMask = parseInt(document.getElementById('subMask').value);
 
-    if (ip1 === '' || ip2 === '' || ip3 === '' || ip4 === '' || anzahl === '' || subMask === '' || anzahl < 1) {
+    if (ip1 === '' || ip2 === '' || ip3 === '' || ip4 === '' || anzahl === '' || subMask === '' || anzahl < 1 || !anzahl) {
         showError('error', 'Bitte überprüfe deine Eingabe');
         return;
     }
@@ -112,12 +112,18 @@ function speichern() {
     }
 }
 
-function myIpAdress(){
-    const ip = getIp();
+async function myIpAdress() {
 
-    if (ip){
+    if (getCookie() === false){
+        showError('error', 'Bitte aktepzieren Sie die Cookies.');
+        cookies();
+        return;
+    }
+    const ip = await getIp();
 
-        endIp = splitIpAddress(ip.ip)
+    if (ip !== null) {
+
+        endIp = splitIpAddress(ip)
 
         if (endIp.success){
             document.getElementById('sub1').value = endIp.arrays.ip1[0];
@@ -127,10 +133,6 @@ function myIpAdress(){
         } else {
             showError('error', endIp.error.message );
         }
-
-
-
-
     }
 }
 
