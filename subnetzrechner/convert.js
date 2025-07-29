@@ -99,3 +99,11 @@ function speichern() {
         console.error("Error saving data:", error);
     }
 }
+
+async function myIpAdress() {
+    const ip = await getIp();
+
+    if (ip !== null) {
+        document.getElementById('ipAddress').value = ip;
+    }
+}
