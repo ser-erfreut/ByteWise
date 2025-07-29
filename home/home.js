@@ -8,5 +8,4 @@ async function willkommen() {
         } catch (error) {
             console.error('Fehler beim Abrufen der IP:', error);
         }
-
 }

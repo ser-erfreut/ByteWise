@@ -150,9 +150,9 @@ function deleteEntry(id, ipAdressen = false) {
 function deleteAllEntries(ipAdressen = false) {
     try {
         if (ipAdressen){
-            localStorage.setItem('ipAdresses', JSON.stringify(null));
+            localStorage.setItem('ipAdresses', JSON.stringify([]));
         } else {
-            localStorage.setItem('subnetCalculations', JSON.stringify(null));
+            localStorage.setItem('subnetCalculations', JSON.stringify([]));
         }
         showError('success', 'Alle Einträge wurden gelöscht.')
         getVerlauf(ipAdressen);
