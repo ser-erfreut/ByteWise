@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie-Richtlinien - ByteWise</title>
+    <script src="../main/main.js"></script>
+    <script src="../main/header.js"></script>
+    <link rel="stylesheet" href="../header/header.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<div id="header"></div>
+<body class="bg-gray-50 min-h-screen" onload="mainLoad()">
+    <div class="max-w-4xl mx-auto px-4 py-12">
+        <div class="bg-white rounded-2xl shadow-xl p-8">
+            <!-- Header -->
+            <div class="mb-8">
+                <h1 class="text-3xl font-bold text-gray-900 mb-4">Cookie-Hinweis</h1>
+                <p class="text-gray-600">
+                    Wir verwenden Cookies, um Ihr Nutzungserlebnis auf unserer Website zu verbessern und statistische Daten zu sammeln.
+                </p>
+            </div>
+
+            <!-- Hauptinformationen -->
+            <div class="prose prose-blue max-w-none mb-8">
+                <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6">
+                    <p class="text-blue-700">
+                        Durch die Nutzung unserer Website erklären Sie sich mit der Verwendung von Cookies einverstanden. Einige dieser Cookies können technische Informationen über Ihr Gerät und Ihre Verbindung erfassen, einschließlich Ihrer IP-Adresse.
+                    </p>
+                </div>
+
+                <!-- IP-Adress-Sektion -->
+                <div class="mb-6">
+                    <h2 class="text-xl font-semibold text-gray-800 mb-4">Warum wir Ihre IP-Adresse erfassen:</h2>
+                    <p class="text-gray-600 mb-4">Die Erfassung Ihrer IP-Adresse dient in erster Linie dazu, unsere Website sicher und funktionsfähig zu halten. Sie hilft uns dabei:</p>
+                    <ul class="list-disc pl-6 text-gray-600 space-y-2">
+                        <li>Fehler zu beheben und die Leistung zu optimieren.</li>
+                        <li>Betrug und Missbrauch vorzubeugen und zu erkennen.</li>
+                        <li>Anonymisierte statistische Daten über die Nutzung unserer Website zu sammeln, um unser Angebot zu verbessern.</li>
+                    </ul>
+                </div>
+
+                <!-- Was Sie wissen sollten -->
+                <div class="mb-6">
+                    <h2 class="text-xl font-semibold text-gray-800 mb-4">Was Sie wissen sollten:</h2>
+                    <ul class="space-y-3 text-gray-600">
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span>Ihre IP-Adresse wird nicht direkt mit Ihrer Person verknüpft, es sei denn, Sie stellen uns freiwillig weitere persönliche Daten zur Verfügung.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span>Wir setzen technische und organisatorische Maßnahmen ein, um Ihre Daten zu schützen.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span>Die erfassten Daten werden nicht an Dritte weitergegeben, außer wenn gesetzlich vorgeschrieben.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Wahlmöglichkeiten -->
+                <div class="bg-gray-50 rounded-lg p-6 mb-8">
+                    <h2 class="text-xl font-semibold text-gray-800 mb-4">Ihre Wahlmöglichkeiten:</h2>
+                    <p class="text-gray-600 mb-4">
+                        Sie können die Verwendung von Cookies jederzeit in den Einstellungen Ihres Browsers steuern oder deaktivieren. Bitte beachten Sie jedoch, dass dies die Funktionalität unserer Website einschränken kann.
+                    </p>
+                    <p class="text-gray-600">
+                        Für weitere Informationen darüber, wie wir Ihre Daten verarbeiten und welche Rechte Sie haben, lesen Sie bitte unsere 
+                        <a href="../datenschutz.html" class="text-blue-600 hover:text-blue-800 underline">Datenschutzerklärung</a>.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Buttons -->
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button onclick="setCookieTrue(); window.location.href='../home/home.html'" class="w-full sm:w-auto px-8 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                    Alle Cookies akzeptieren
+                </button>
+                <button onclick="setCookieFalse(); window.location.href='../home/home.html'" class="w-full sm:w-auto px-8 py-3 bg-gray-200 text-gray-700 font-semibold rounded-lg hover:bg-gray-300 transition duration-300 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2">
+                    Alle Cookies deaktivieren
+                </button>
+            </div>
+        </div>
+    </div>
+<div id="footer"></div>
+</body>
+</html>

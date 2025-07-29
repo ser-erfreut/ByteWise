@@ -115,7 +115,7 @@ function speichern() {
 async function myIpAdress(){
 
     if (getCookie() === false){
-        showError('error', 'Bitte aktepzieren Sie die Cookies.');
+        showError('warning', 'Bitte Akzeptiere die Cookies.');
         cookies();
         return;
     }

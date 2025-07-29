@@ -1,6 +1,12 @@
 async function geolocate(ownIp = false){
     let inputValueIP
     if (ownIp) {
+        if (getCookie() === false){
+            showError('error', 'Bitte Akzeptiere die Cookies.');
+            cookies();
+            return;
+        }
+
         inputValueIP = await getIp()
         document.getElementById("InputIP").value = inputValueIP;
     } else {

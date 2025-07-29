@@ -86,7 +86,7 @@ function cookies(){
                 </div>
                 <div class="text-gray-800">
                     <h3 class="font-semibold text-lg mb-1">Cookie-Einstellungen</h3>
-                    <p class="text-sm text-gray-600">Wir verwenden Cookies, um Ihre Erfahrung auf unserer Website zu verbessern.</p>
+                    <p class="text-sm text-gray-600">Wir verwenden Cookies, um Ihre Erfahrung auf unserer Website zu verbessern. Zu unseren <a href="../cookies/cookies.html">Cookies</a>.</p>
                 </div>
             </div>
             <div class="flex gap-3">

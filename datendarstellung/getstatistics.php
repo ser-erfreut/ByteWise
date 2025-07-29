@@ -4,10 +4,8 @@ require_once '../main/main.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     try {
-        $db = DB::getInstance();
-        $pdo = $db->getConnection();
 
-        $stmt = $pdo->prepare("
+        $strSQL = "
         SELECT 
             land,
             COUNT(*) as anzahl,
@@ -16,12 +14,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         WHERE land IS NOT NULL
         GROUP BY land 
         ORDER BY anzahl DESC
-        ");
-        $stmt->execute([]);
+        ";
+        $laenderStatistik = Main::getValueSql($strSQL, []);
 
-        $laenderStatistik = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        $stmt = $pdo->prepare("
+        $strSQL ="
         SELECT 
             stadt,
             COUNT(*) as anzahl
@@ -30,11 +27,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         GROUP BY stadt 
         ORDER BY anzahl DESC 
         LIMIT 10
-        ");
+        ";
 
-
-        $stmt->execute([]);
-        $staedteStatistik = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $staedteStatistik = Main::getValueSql($strSQL, []);
 
         Main::sendJsonResponse([
             'success' => true,
@@ -42,8 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             'staedte' => $staedteStatistik
         ]);
 
-    } catch(PDOException $e) {
+    } catch(PDOException|Exception $e) {
         Main::sendJsonResponse(['error' => $e->getMessage()], 400);
     }
-
 }
