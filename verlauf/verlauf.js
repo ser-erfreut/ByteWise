@@ -1,7 +1,12 @@
-function getVerlauf() {
+function getVerlauf(ipAdressen) {
     try {
-        let data = localStorage.getItem('subnetCalculations');
-        
+        let data = [];
+        if (ipAdressen) {
+            data = localStorage.getItem('ipAdressen');
+        } else {
+            data = localStorage.getItem('subnetCalculations');
+        }
+
         if (!data) {
             console.log('Keine Daten im LocalStorage gefunden');
             document.getElementById('verlauf').innerHTML = '<p class="text-gray-500 text-center p-4">Keine Einträge vorhanden</p>';
@@ -28,7 +33,20 @@ function getVerlauf() {
             try {
                 const entryDiv = document.createElement('div');
                 entryDiv.className = 'mb-4 p-4 bg-gray-50 rounded-lg shadow';
-                entryDiv.innerHTML = `
+                if (ipAdressen){
+                    entryDiv.innerHTML = `
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="font-medium">${entry.ipCidr || 'Keine IP'}</span>
+                        <span class="text-sm text-gray-500">${new Date(entry.timestamp).toLocaleString('de-DE')}</span>
+                    </div>
+                    <div class="text-sm">
+                        <div>Netzwerk: ${entry.data?.networkAddress || 'N/A'}</div>
+                        <div>Broadcast: ${entry.data?.broadcastAddress || 'N/A'}</div>
+                        <div>Nutzbare Hosts: ${entry.data?.usableHosts || 'N/A'}</div>
+                    `;
+
+                } else {
+                    entryDiv.innerHTML = `
                     <div class="flex justify-between items-center mb-2">
                         <span class="font-medium">${entry.ipCidr || 'Keine IP'}</span>
                         <span class="text-sm text-gray-500">${new Date(entry.timestamp).toLocaleString('de-DE')}</span>
@@ -49,6 +67,8 @@ function getVerlauf() {
                         </button>
                     </div>
                 `;
+                }
+
                 container.appendChild(entryDiv);
             } catch (error) {
                 console.error('Fehler beim Erstellen des Eintrags:', error);
@@ -60,14 +80,12 @@ function getVerlauf() {
     }
 }
 
-// Hilfsfunktion zum Kopieren von Text
 function copyText(text) {
     navigator.clipboard.writeText(text)
         .then(() => showError('success', 'Text wurde kopiert!'))
         .catch(() => showError('error', 'Fehler beim Kopieren'));
 }
 
-// Hilfsfunktion zum Löschen eines Eintrags
 function deleteEntry(id) {
     try {
         let data = JSON.parse(localStorage.getItem('subnetCalculations')) || [];

@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="../header/header.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
-<body class="bg-gray-50 min-h-screen" onload="mainLoad(); getVerlauf()">
+<body class="bg-gray-50 min-h-screen" onload="mainLoad(); getVerlauf(false)">
     <div id="header"></div>
 
     <!-- Hero Section -->
@@ -30,12 +30,12 @@
             <div class="bg-white rounded-lg shadow-lg mb-8">
                 <div class="border-b border-gray-200">
                     <div class="flex">
-                        <button onclick="showSubnets()" 
+                        <button onclick="getVerlauf(false)"
                                 class="px-6 py-4 text-blue-600 hover:text-blue-800 font-medium border-b-2 border-blue-600 focus:outline-none">
                             <i class="fas fa-network-wired mr-2"></i>
                             Subnetz-Berechnungen
                         </button>
-                        <button onclick="showIps()" 
+                        <button onclick="getVerlauf(true)"
                                 class="px-6 py-4 text-gray-500 hover:text-gray-700 font-medium hover:border-b-2 hover:border-gray-300 focus:outline-none">
                             <i class="fas fa-calculator mr-2"></i>
                             IP-Adressen
@@ -69,9 +69,10 @@
                         </button>
                     </div>
                 </div>
+                <div id="verlauf" class="space-y-4">
+                </div>
             </div>
-            <div id="verlauf" class="space-y-4">
-            </div>
+
 
             <!-- Template für Subnetz-Einträge -->
             <template id="subnetTemplate">

@@ -112,12 +112,12 @@ function speichern() {
     }
 }
 
-function myIpAdress(){
-    const ip = getIp();
+async function myIpAdress(){
+    const ip = await getIp();
 
     if (ip){
 
-        endIp = splitIpAddress(ip.ip)
+        endIp = splitIpAddress(ip)
 
         if (endIp.success){
             document.getElementById('sub1').value = endIp.arrays.ip1[0];
@@ -127,10 +127,6 @@ function myIpAdress(){
         } else {
             showError('error', endIp.error.message );
         }
-
-
-
-
     }
 }
 
