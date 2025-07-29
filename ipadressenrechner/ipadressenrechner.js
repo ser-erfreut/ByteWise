@@ -88,7 +88,7 @@ function speichern() {
     if(htmlElement.innerHTML !== ''){
         try {
             document.querySelectorAll('#ipAdress').forEach(element => {
-                let savedCalculations = JSON.parse(localStorage.getItem('subnetCalculations')) || [];
+                let savedCalculations = JSON.parse(localStorage.getItem('ipAdresses')) || [];
 
                 const elements = {
                     id: Date.now(),
