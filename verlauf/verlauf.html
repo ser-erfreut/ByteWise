@@ -9,6 +9,7 @@
     <script src="../main/header.js"></script>
     <script src="verlauf.js"></script>
     <link rel="stylesheet" href="../header/header.css">
+    <link rel="stylesheet" href="verlauf.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body class="bg-gray-50 min-h-screen" onload="mainLoad(); getVerlauf(false)">
@@ -31,12 +32,12 @@
                 <div class="border-b border-gray-200">
                     <div class="flex">
                         <button onclick="getVerlauf(false)" id='subnetsButton'
-                                class="px-6 py-4 text-blue-600 hover:text-blue-800 font-medium border-b-2 border-blue-600 focus:outline-none">
+                                class="px-6 py-4 text-blue-600 custom-transition hover:text-blue-800 font-medium border-b-2 border-blue-600 focus:outline-none">
                             <i class="fas fa-network-wired mr-2"></i>
                             Subnetz-Berechnungen
                         </button>
                         <button onclick="getVerlauf(true)" id="ipAdressenButton"
-                                class="px-6 py-4 text-gray-500 hover:text-gray-700 font-medium hover:border-b-2 hover:border-gray-300 focus:outline-none">
+                                class="px-6 py-4 text-gray-500 custom-transition hover:text-gray-700 font-medium hover:border-b-2 hover:border-gray-300 focus:outline-none">
                             <i class="fas fa-calculator mr-2"></i>
                             IP-Adressen
                         </button>

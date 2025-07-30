@@ -31,7 +31,7 @@ function showError(type, message) {
             break;
     }
 
-    errorDiv.className = `fixed top-4 right-4 flex items-center p-4 mb-4 ${bgColor} ${textColor} rounded-lg shadow-lg transition-all duration-500 transform translate-x-full`;
+    errorDiv.className = `z-110 fixed top-20 right-4 flex items-center p-4 mb-4 ${bgColor} ${textColor} rounded-lg shadow-lg transition-all duration-500 transform translate-x-full`;
     errorDiv.innerHTML = `
         <div class="inline-flex flex-shrink-0 mr-3">
             ${icon}

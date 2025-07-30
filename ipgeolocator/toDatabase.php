@@ -25,5 +25,3 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         Main::sendJsonResponse(['error' => $e->getMessage()], 400);
     }
 }
-
-

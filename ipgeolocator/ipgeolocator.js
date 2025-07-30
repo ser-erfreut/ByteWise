@@ -1,4 +1,13 @@
 async function geolocate(ownIp = false){
+    let dataValue = [
+        {id: "result-ip", value: "-"},
+        {id: "result-country", value: "-"},
+        {id: "result-region", value: "-"},
+        {id: "result-city", value: "-"},
+        {id: "result-zip", value: "-"},
+        {id: "result-isp", value: "-"}
+    ]
+
     let inputValueIP
     if (ownIp) {
         if (getCookie() === false){
@@ -17,39 +26,34 @@ async function geolocate(ownIp = false){
             .then(response => response.json())
             .then(data => {
                 if (data.status === 'success') {
-                    document.getElementById("result-ip").textContent = data.query || '-';
-                    document.getElementById("result-country").textContent = data.country || '-';
-                    document.getElementById("result-region").textContent = data.regionName || '-';
-                    document.getElementById("result-city").textContent = data.city || '-';
-                    document.getElementById("result-zip").textContent = data.zip || '-';
-                    document.getElementById("result-isp").textContent = data.isp || '-';
+                    dataValue = [
+                        {id: "result-ip", value: data.query},
+                        {id: 'result-country', value: data.country},
+                        {id: 'result-region', value: data.regionName},
+                        {id: 'result-city', value: data.city},
+                        {id: 'result-zip', value: data.zip},
+                        {id: 'result-isp', value: data.isp},
+                    ];
+
+                    setValue(dataValue);
                     copyInDatabase(data.query, data.country, data.regionName, data.city, data.isp);
                 } else {
-                    document.getElementById("result-ip").textContent = '-';
-                    document.getElementById("result-country").textContent = '-';
-                    document.getElementById("result-region").textContent = '-';
-                    document.getElementById("result-city").textContent = '-';
-                    document.getElementById("result-zip").textContent = '-';
-                    document.getElementById("result-isp").textContent = '-';
+                    setValue(dataValue);
+                    showError('error', 'Fehler beim Laden der IP-Adresse: ' + data.status);
                 }
             })
             .catch(error => {
-                showError('error', 'Fehler beim Abrufen der IP-Daten: ' + error);
-                document.getElementById("result-ip").textContent = '-';
-                document.getElementById("result-country").textContent = '-';
-                document.getElementById("result-region").textContent = '-';
-                document.getElementById("result-city").textContent = '-';
-                document.getElementById("result-zip").textContent = '-';
-                document.getElementById("result-isp").textContent = '-';
+                setValue(dataValue);
+                showError('error', 'Fehler beim Laden der IP-Adresse: ' + error)
             });
     } else {
-        document.getElementById("result-ip").textContent = '-';
-        document.getElementById("result-country").textContent = '-';
-        document.getElementById("result-region").textContent = '-';
-        document.getElementById("result-city").textContent = '-';
-        document.getElementById("result-zip").textContent = '-';
-        document.getElementById("result-isp").textContent = '-';
-    }
+        setValue(dataValue);
+    }}
+
+function setValue(data){
+    data.forEach(element => {
+        document.getElementById(element.id).textContent = element.value;
+    })
 }
 
 function copyInDatabase(ip, land, region, stadt, internet_anbieter){

@@ -92,7 +92,7 @@ function showRight(ipAdressen) {
     const text = document.querySelector('#verlaufText');
 
     const activeClasses = 'text-blue-600 hover:text-blue-800 font-medium border-b-2 border-blue-600';
-    const inactiveClasses = 'text-gray-500 hover:text-gray-700 font-medium border-b-2 border-transparent';
+    const inactiveClasses = 'text-gray-500 hover:text-gray-700 font-medium hover:border-b-2 hover:border-gray-300';
     if (ipAdressen) {
         text.innerHTML = 'Gespeicherte IP Adressen';
         subnetsButton.classList.remove(...activeClasses.split(' '));
