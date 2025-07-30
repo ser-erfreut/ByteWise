@@ -1,12 +1,15 @@
-async function geolocate(ownIp = false){
-    let dataValue = [
-        {id: "result-ip", value: "-"},
-        {id: "result-country", value: "-"},
-        {id: "result-region", value: "-"},
-        {id: "result-city", value: "-"},
-        {id: "result-zip", value: "-"},
-        {id: "result-isp", value: "-"}
-    ]
+async function geolocate(ownIp = false, id= null){
+    let dataValue = []
+    if (id === null){
+        dataValue = [
+            {id: "result-ip", value: "-"},
+            {id: "result-country", value: "-"},
+            {id: "result-region", value: "-"},
+            {id: "result-city", value: "-"},
+            {id: "result-zip", value: "-"},
+            {id: "result-isp", value: "-"}
+        ]
+    }
 
     let inputValueIP
     if (ownIp) {
@@ -26,17 +29,18 @@ async function geolocate(ownIp = false){
             .then(response => response.json())
             .then(data => {
                 if (data.status === 'success') {
-                    dataValue = [
-                        {id: "result-ip", value: data.query},
-                        {id: 'result-country', value: data.country},
-                        {id: 'result-region', value: data.regionName},
-                        {id: 'result-city', value: data.city},
-                        {id: 'result-zip', value: data.zip},
-                        {id: 'result-isp', value: data.isp},
-                    ];
-
-                    setValue(dataValue);
-                    copyInDatabase(data.query, data.country, data.regionName, data.city, data.isp);
+                    if (id === null){
+                        dataValue = [
+                            {id: "result-ip", value: data.query},
+                            {id: 'result-country', value: data.country},
+                            {id: 'result-region', value: data.regionName},
+                            {id: 'result-city', value: data.city},
+                            {id: 'result-zip', value: data.zip},
+                            {id: 'result-isp', value: data.isp},
+                        ];
+                        setValue(dataValue);
+                    }
+                    copyInDatabase(data.query, data.country, data.regionName, data.city, data.isp, id);
                 } else {
                     setValue(dataValue);
                     showError('error', 'Fehler beim Laden der IP-Adresse: ' + data.status);
@@ -56,7 +60,7 @@ function setValue(data){
     })
 }
 
-function copyInDatabase(ip, land, region, stadt, internet_anbieter){
+function copyInDatabase(ip, land, region, stadt, internet_anbieter, id = null){
     fetch('toDatabase.php', {
         method: 'POST',
         headers: {
@@ -68,6 +72,7 @@ function copyInDatabase(ip, land, region, stadt, internet_anbieter){
             land: land,
             region: region,
             internet_anbieter: internet_anbieter,
+            id: id,
         })
     })
         .then(response => response.json())

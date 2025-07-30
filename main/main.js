@@ -125,3 +125,9 @@ function getCookie(){
         cookies();
     }
 }
+
+function copyText(text) {
+    navigator.clipboard.writeText(text)
+        .then(() => showError('success', 'Text wurde kopiert!'))
+        .catch(() => showError('error', 'Fehler beim Kopieren'));
+}

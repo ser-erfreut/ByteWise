@@ -9,7 +9,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         SELECT 
             land,
             COUNT(*) as anzahl,
-            STRING_AGG(DISTINCT stadt, ', ') as staedte
+            STRING_AGG(DISTINCT stadt, ', ') as staedte,
+            STRING_AGG(DISTINCT internet_anbieter, ', ') as internet_anbieter
         FROM ip_adressen 
         WHERE land IS NOT NULL
         GROUP BY land 

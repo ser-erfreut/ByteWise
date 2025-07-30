@@ -117,12 +117,6 @@ function showRight(ipAdressen) {
     }
 }
 
-function copyText(text) {
-    navigator.clipboard.writeText(text)
-        .then(() => showError('success', 'Text wurde kopiert!'))
-        .catch(() => showError('error', 'Fehler beim Kopieren'));
-}
-
 function deleteEntry(id, ipAdressen = false) {
     try {
         let data = [];

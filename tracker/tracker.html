@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Link Tracker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="tracker.js"></script>
+    <script src="../main/main.js"></script>
+    <script src="../main/header.js"></script>
+    <link rel="stylesheet" href="../header/header.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <div class="container mx-auto p-5 pt-[100px] max-w-4xl">
+        <!-- Link Erstellung -->
+        <div class="max-w-xl mx-auto bg-white rounded-lg shadow-md p-6 mb-8">
+            <div class="flex flex-col sm:flex-row gap-4">
+                <select id="protokoll" class="w-32 p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <option value="1">HTTP://</option>
+                    <option value="2">HTTPS://</option>
+                </select>
+                
+                <input type="text" 
+                       id="weiterleitung"
+                       placeholder="Link eingeben" 
+                       class="flex-grow p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                
+                <button id="button" onclick="erstelleLink()"
+                        class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-md transition-all duration-300">
+                    erstellen
+                </button>
+            </div>
+            <div class="mt-6 p-4 bg-gray-50 rounded-md" style="display: none;" id="erstellterLinkContainer">
+                <div class="flex flex-col sm:flex-row items-center gap-4">
+                    <p id="erstellterLink" class="text-sm text-gray-600 bg-white p-3 rounded-md flex-grow break-all"></p>
+                    <button id="copyButton"
+                            onclick="copyText(document.getElementById('erstellterLink').textContent)"
+                            class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md transition-all duration-300 flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"/>
+                            <path d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"/>
+                        </svg>
+                        Kopieren
+                    </button>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- Suche und Tabelle -->
+        <div class="max-w-xl mx-auto bg-white rounded-lg shadow-md p-6">
+            <div class="mb-6">
+                <input type="text" 
+                       id="link" 
+                       placeholder="Suchen..." 
+                       class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+
+            <div class="overflow-x-auto">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Land</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Städte</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Internetanbieter</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Zeitpunkt</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-gray-200" id="tableBody">
+                        <!-- Tabelleninhalt wird dynamisch hinzugefügt -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

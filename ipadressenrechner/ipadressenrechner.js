@@ -36,11 +36,11 @@ function calculateSubnet() {
 
    if (subMask === 8 ) {
        for (let i = 0; i < anzahl; i++) {
-           if (ip2 !== 255){
+           if (ip2 < 255){
                ip2++;
-           } else if (ip3 !== 255){
+           } else if (ip3 < 255){
                ip3++;
-           } else if (ip4 !== 255){
+           } else if (ip4 < 255){
                ip4++;
            } else {
                break;
