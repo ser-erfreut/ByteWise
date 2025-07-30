@@ -75,14 +75,12 @@ async function getIp() {
 
 function cookies(){
     const cookieDiv = document.createElement('div');
-    cookieDiv.className = 'fixed bottom-0 left-0 right-0 bg-white shadow-lg border-t border-gray-200 p-6 transform transition-transform duration-500 ease-in-out z-50';
+    cookieDiv.className = 'fixed bottom-0 left-0 right-0 bg-white shadow-lg border-t border-gray-200 p-6 transform transition-all duration-500 ease-in-out z-50';
     cookieDiv.innerHTML = `
         <div class="max-w-screen-xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
             <div class="flex items-center gap-4">
-                <div class="text-blue-600">
-                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z"/>
-                    </svg>
+                <div class="text-blue-600 text-3xl">
+                    <i class="fa-solid fa-cookie-bite"></i>
                 </div>
                 <div class="text-gray-800">
                     <h3 class="font-semibold text-lg mb-1">Cookie-Einstellungen</h3>
