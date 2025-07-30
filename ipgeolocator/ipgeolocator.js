@@ -21,7 +21,7 @@ async function geolocate(ownIp = false, id= null){
 
         inputValueIP = await getIp()
 
-        if (inputValueIP === null){
+        if (id === null){
             document.getElementById("InputIP").value = inputValueIP;
         }
     } else {
