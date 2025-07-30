@@ -20,7 +20,10 @@ async function geolocate(ownIp = false, id= null){
         }
 
         inputValueIP = await getIp()
-        document.getElementById("InputIP").value = inputValueIP;
+
+        if (inputValueIP === null){
+            document.getElementById("InputIP").value = inputValueIP;
+        }
     } else {
         inputValueIP = document.getElementById("InputIP").value;
     }
@@ -61,7 +64,7 @@ function setValue(data){
 }
 
 function copyInDatabase(ip, land, region, stadt, internet_anbieter, id = null){
-    fetch('toDatabase.php', {
+    fetch('../ipgeolocator/toDatabase.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -72,7 +75,7 @@ function copyInDatabase(ip, land, region, stadt, internet_anbieter, id = null){
             land: land,
             region: region,
             internet_anbieter: internet_anbieter,
-            id: id,
+            tracked_id: id,
         })
     })
         .then(response => response.json())

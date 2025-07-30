@@ -15,7 +15,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             'region' => $data['region'],
             'land' => $data['land'],
             'internet_anbieter' => $data['internet_anbieter'],
-            'tracked_id' => $data['id'] || null,
+            'tracked_id' => $data['tracked_id'] ?? null,
             'created_at' => date('Y-m-d H:i:s')
         ];
 

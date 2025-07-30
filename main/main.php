@@ -41,4 +41,7 @@ class Main
             throw new Exception("Datenbankfehler beim Ausführen der Abfrage");
         }
     }
+    public static function getParameter($parameter){
+        return isset($_GET[$parameter]) ? htmlspecialchars($_GET[$parameter]) : '';
+    }
 }

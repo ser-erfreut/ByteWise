@@ -11,8 +11,9 @@
     <link rel="stylesheet" href="../header/header.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
-<body class="bg-gray-100 min-h-screen">
-    <div class="container mx-auto p-5 pt-[100px] max-w-4xl">
+<body class="bg-gray-100 min-h-screen" onload="mainLoad()">
+<header id="header"></header>
+    <div class="container mx-auto p-5 pt-[250px] pb-[300px] max-w-4xl">
         <!-- Link Erstellung -->
         <div class="max-w-xl mx-auto bg-white rounded-lg shadow-md p-6 mb-8">
             <div class="flex flex-col sm:flex-row gap-4">
@@ -53,9 +54,10 @@
         <div class="max-w-xl mx-auto bg-white rounded-lg shadow-md p-6">
             <div class="mb-6">
                 <input type="text" 
-                       id="link" 
+                       id="id"
                        placeholder="Suchen..." 
-                       class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                       class=" p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <button class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-md transition duration-300 ease-in-out" id="searchButton" onclick="getIdIp()">Suchen</button>
             </div>
 
             <div class="overflow-x-auto">
@@ -75,5 +77,6 @@
             </div>
         </div>
     </div>
+<div id="footer"></div>
 </body>
 </html>

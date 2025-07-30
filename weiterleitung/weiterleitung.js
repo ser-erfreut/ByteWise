@@ -18,8 +18,10 @@ function ladeSeite(){
 }
 
 function track(url, id){
-    geolocate(true, id);
-    window.location.href = url;
+    geolocate(true, id).then(r =>
+    {
+        window.location.href = url;
+    });
 }
 
 function noTrack(url){

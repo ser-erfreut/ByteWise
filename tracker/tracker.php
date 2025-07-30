@@ -21,3 +21,19 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         Main::sendJsonResponse(['error' => $e->getMessage()], 400);
     }
 }
+
+if ($_SERVER['REQUEST_METHOD'] == 'GET'){
+    try {
+        $id = Main::getParameter('id');
+
+        $strSql = 'SELECT stadt, land, internet_anbieter, created_at FROM ip_adressen WHERE tracked_id = :tracking_id';
+        $arrWerte = [
+            'tracking_id' => $id,
+        ];
+        $result = Main::getValueSql($strSql, $arrWerte);
+        Main::sendJsonResponse(['success' => true,
+            'data' => $result]);
+    } catch (PDOException|Exception $e) {
+        Main::sendJsonResponse(['error' => $e->getMessage()], 400);
+    }
+}
